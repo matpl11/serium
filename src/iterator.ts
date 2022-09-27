@@ -10,7 +10,7 @@ const iterateTemplate = async (start: number, quantity: number, digits: number, 
         for (var j = digits - realNum.length; j > 0; j--) {
             realNum = '0' + realNum
         }
-        resp += await ejs.renderFile('views/blankiet.ejs', { serie: serie, num: realNum })
+        resp += await ejs.renderFile('views/templates/blankiet.ejs', { serie: serie, num: realNum })
     }
 
     return resp

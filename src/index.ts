@@ -6,6 +6,7 @@ import Express from "express"
 import pdf from 'html-pdf' // na przyszłość/for future use
 import bodyParser from "body-parser" // na przyszłość/for future use
 import dotenv from 'dotenv'
+import ejs from 'ejs'
 
 import { iterateTemplate } from "./iterator"
 
@@ -41,6 +42,11 @@ if(typeof process.env.DIGITS === 'string'){
 }
 else tickets.digits = 0
 
+App.use(Express.urlencoded({
+    extended: true
+}))
+App.use(Express.json())
+
 /*
 
 Objaśnienie funkcji strzałkowej
@@ -55,7 +61,13 @@ serie - jego seria
 */
 
 App.get('/', function (req, res) {
-    iterateTemplate(tickets.start, tickets.qty, tickets.digits, 'AQ').then(function (r) {
+    ejs.renderFile('views/main.ejs').then((r)=>{
+        res.send(r)
+    })
+})
+
+App.post('/getResult', function (req, res) {
+    iterateTemplate(parseInt(req.body.start), parseInt(req.body.count), parseInt(req.body.dig), req.body.serie).then(function (r) {
         res.send(r)
     })
 })
