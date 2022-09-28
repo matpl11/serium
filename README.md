@@ -3,3 +3,10 @@ Oprogramowanie ma pozwalać na generowanie blankietów druków ścisłej rejestr
 Na razie jednak długa droga do tego, żeby stał się użyteczny.
 
 Objaśnienia zostaną zamieszczone w najbliższym czasie.
+
+
+## Rozwiązywanie problemów
+
+* Generowanie pliku PDF skutkuje wyrzuceniem błędu aplikacji i crasha.
+Wyeksportuj zmienną środowiskową
+`export OPENSSL_CONF=/dev/null`
