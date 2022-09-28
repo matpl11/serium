@@ -8,6 +8,9 @@
     <body>
         <h1>Generator blankietów Serium</h1>
         <hr />
+        <% if (typeof alert !== 'undefined' && alert != '') { %>
+            <%= alert %>
+        <% } %>
         <form action="/getResult" method="post">
             <input type="text" placeholder="Seria blankietu" name="serie">
             <br/>
