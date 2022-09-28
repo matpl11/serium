@@ -7,6 +7,6 @@ Objaśnienia zostaną zamieszczone w najbliższym czasie.
 
 ## Rozwiązywanie problemów
 
-* Generowanie pliku PDF skutkuje wyrzuceniem błędu aplikacji i crasha.
-Wyeksportuj zmienną środowiskową
-`export OPENSSL_CONF=/dev/null`
+### Generowanie pliku PDF skutkuje wyrzuceniem błędu aplikacji i crasha.
+
+W takim razie należy wyeksportować zmienną środowiskową `export OPENSSL_CONF=/dev/null`.
