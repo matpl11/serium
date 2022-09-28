@@ -3,16 +3,18 @@
 
 
 import Express from "express"
-import pdf from 'html-pdf' // na przyszłość/for future use
+import pdf from 'html-pdf'
 import bodyParser from "body-parser" // na przyszłość/for future use
 import dotenv from 'dotenv'
 import ejs from 'ejs'
+import {exec} from 'child_process'
 
 import { iterateTemplate } from "./iterator"
 
 dotenv.config({
     path: 'config.env'
 })
+
 const App: Express.Application = Express()
 const PORT = process.env.HTTP_PORT
 let tickets = {
@@ -80,7 +82,11 @@ App.post('/getResult', function (req, res) {
         (serie != '' && serie != null)
     ) {
         iterateTemplate(start, ticketQty, digitsQty, serie).then(function (r) {
-            res.send(r)
+          pdf.create(r, {format: "A4"}).toBuffer(function (e,b){
+              if (e) throw e
+              res.writeHead(200, ['Content-Type', 'application/pdf'])
+              res.end(b)
+          })
         })
     }
     else {
